@@ -252,7 +252,7 @@ class Snitch_CPT {
 		$filter = ( ! isset( $_GET['snitch_state_filter'] ) ? '' : (int) $_GET['snitch_state_filter'] );
 
 		/* Filter dropdown */
-		echo sprintf(
+		printf(
 			'<select name="snitch_state_filter">%s%s%s</select>',
 			'<option value="">' . esc_html__( 'All states', 'snitch' ) . '</option>',
 			'<option value="' . esc_attr( SNITCH_AUTHORIZED ) . '" ' . selected( $filter, SNITCH_AUTHORIZED, false ) . '>' . esc_html__( 'Authorized', 'snitch' ) . '</option>',
@@ -484,7 +484,7 @@ class Snitch_CPT {
 		$blacklisted = in_array( $host, self::$options['hosts'] );
 
 		/* Print output */
-		echo sprintf(
+		printf(
 			'<div><p class="label blacklisted-%d"></p>%s<div class="row-actions">%s</div></div>',
 			esc_attr( $blacklisted ),
 			wp_kses(
@@ -541,7 +541,7 @@ class Snitch_CPT {
 		$blacklisted = in_array( $file, self::$options['files'] );
 
 		/* Print output */
-		echo sprintf(
+		printf(
 			'<div><p class="label blacklisted-%d"></p>%s: %s<br /><code>/%s:%d</code><div class="row-actions">%s</div></div>',
 			esc_attr( $blacklisted ),
 			esc_html( $meta['type'] ),
@@ -583,7 +583,7 @@ class Snitch_CPT {
 		);
 
 		/* Print the state */
-		echo sprintf(
+		printf(
 			'<span class="%s">%s</span>',
 			esc_attr( strtolower( $states[ $state ] ) ),
 			esc_html( $states[ $state ] )
@@ -591,7 +591,7 @@ class Snitch_CPT {
 
 		/* Colorize blocked item */
 		if ( SNITCH_BLOCKED === $state ) {
-			echo sprintf(
+			printf(
 				'<style>#post-%1$d {background:rgba(248, 234, 232, 0.8)}#post-%1$d.alternate {background:#f8eae8}</style>',
 				esc_attr( $post_id )
 			);
@@ -640,7 +640,7 @@ class Snitch_CPT {
 	private static function _html_duration( $post_id ) {
 		$duration = self::_get_meta( $post_id, 'duration' );
 		if ( $duration ) {
-			echo sprintf(
+			printf(
 				/* translators: duration in seconds */
 				esc_html__( '%s seconds', 'snitch' ),
 				esc_html( $duration )
@@ -657,7 +657,7 @@ class Snitch_CPT {
 	 * @param   integer $post_id  Post-ID.
 	 */
 	private static function _html_created( $post_id ) {
-		echo sprintf(
+		printf(
 			/* translators: duration (e. g. "15 mins") since the post was created */
 			esc_html__( '%s ago', 'snitch' ),
 			esc_html( human_time_diff( get_post_time( 'G', true, $post_id ) ) )
@@ -692,7 +692,7 @@ class Snitch_CPT {
 		}
 
 		/* Thickbox content start */
-		echo sprintf(
+		printf(
 			'<div id="snitch-thickbox-%d" class="snitch-hidden"><pre>',
 			esc_attr( $post_id )
 		);
@@ -922,7 +922,7 @@ class Snitch_CPT {
 		$update_message = $_GET['updated'] > 0
 			? __( 'New rule added to the Snitch filter. Matches are labeled in red.', 'snitch' )
 			: __( 'An existing rule removed from the Snitch filter.', 'snitch' );
-		echo sprintf(
+		printf(
 			'<div class="updated"><p>%s</p></div>',
 			esc_html( $update_message )
 		);
